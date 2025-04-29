@@ -15,7 +15,5 @@ class MainViewModel(dao: PengeluaranDao) : ViewModel() {
         started = SharingStarted.WhileSubscribed(),
         initialValue = emptyList()
     )
-    fun getPengeluaran(id: Long) : Pengeluaran?{
-        return data.value.find { it.id == id }
-    }
+
 }

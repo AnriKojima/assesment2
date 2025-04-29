@@ -1,6 +1,7 @@
 package com.anri0145.assesment2.screen
 
 import android.content.res.Configuration
+import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -33,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
@@ -44,16 +46,19 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.anri0145.assesment2.R
 import com.anri0145.assesment2.ui.theme.Assesment2Theme
+import com.anri0145.assesment2.util.ViewModelFactory
 
 const val KEY_ID_PENGELUARAN = "idPengeluaran"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(navController: NavHostController, id: Long? = null) {
-    val viewModel: MainViewModel = viewModel()
+    val context = LocalContext.current
+    val factory = ViewModelFactory(context)
+    val viewModel: DetailViewModel = viewModel(factory = factory)
 
     var judul by remember { mutableStateOf("") }
-    var pengeluaran by remember { mutableStateOf("") }
+    var belanja by remember { mutableStateOf("") }
 
     val radioOptions = listOf(
         "senin",
@@ -70,7 +75,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
         if (id == null) return@LaunchedEffect
         val data = viewModel.getPengeluaran(id) ?: return@LaunchedEffect
         judul = data.judul
-        pengeluaran = data.belanja
+        belanja = data.belanja
     }
 
     Scaffold(
@@ -96,7 +101,15 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 actions = {
-                    IconButton(onClick = {navController.popBackStack()}) {
+                    IconButton(onClick = {
+                        if (judul == "" || belanja == ""){
+                            Toast.makeText(context, R.string.invalid, Toast.LENGTH_SHORT).show()
+                            return@IconButton
+                        }
+                        if (id == null){
+                            viewModel.insert(judul, belanja, hari )
+                        }
+                        navController.popBackStack()}) {
                         Icon(
                             imageVector = Icons.Outlined.Check,
                             contentDescription = stringResource(R.string.simpan),
@@ -110,8 +123,8 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
         FormPengeluaran(
             title = judul,
             onTitlleChange = {judul=it},
-            desc = pengeluaran,
-            onDescChange = {pengeluaran = it},
+            desc = belanja,
+            onDescChange = {belanja = it},
             hari = hari,
             onHariChange = { hari = it},
             radioOption = radioOptions,
