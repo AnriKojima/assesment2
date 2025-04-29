@@ -129,6 +129,7 @@ fun ListItem(pengeluaran: Pengeluaran, onClick: () -> Unit){
             overflow = TextOverflow.Ellipsis
         )
         Text(text = pengeluaran.tanggal)
+        Text(text = pengeluaran.hari)
     }
 }
 

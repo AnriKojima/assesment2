@@ -10,7 +10,8 @@ class MainViewModel : ViewModel() {
             1,
             "sdfghjkl",
             "xcfghjkiuytf",
-            "dfghjkl"
+            "dfghjkl",
+            ""
         )
     )
     fun getPengeluaran(id: Long) : Pengeluaran?{
