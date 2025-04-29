@@ -108,6 +108,8 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                         }
                         if (id == null){
                             viewModel.insert(judul, belanja, hari )
+                        }else{
+                            viewModel.update(id, judul, belanja, hari)
                         }
                         navController.popBackStack()}) {
                         Icon(

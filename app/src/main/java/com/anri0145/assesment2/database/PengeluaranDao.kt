@@ -18,4 +18,7 @@ interface PengeluaranDao {
 
     @Query("SELECT * FROM pengeluaran ORDER BY tanggal DESC")
     fun getPengeluara(): Flow<List<Pengeluaran>>
+
+    @Query("SELECT * FROM pengeluaran WHERE id = :id")
+    suspend fun getPengeluaranById(id: Long): Pengeluaran?
 }

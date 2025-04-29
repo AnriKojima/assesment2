@@ -25,7 +25,19 @@ class DetailViewModel(private val dao: PengeluaranDao) : ViewModel() {
             dao.insert(pengeluaran)
         }
     }
-    fun getPengeluaran(id: Long) : Pengeluaran?{
-        return null
+    suspend fun getPengeluaran(id: Long) : Pengeluaran?{
+        return dao.getPengeluaranById(id)
+    }
+    fun update(id: Long, judul: String, isi: String, hari: String){
+        val pengeluaran = Pengeluaran(
+            id = id,
+            tanggal = formatter.format(Date()),
+            judul = judul,
+            belanja = isi,
+            hari = hari
+        )
+        viewModelScope.launch (Dispatchers.IO){
+            dao.update(pengeluaran)
+        }
     }
 }
