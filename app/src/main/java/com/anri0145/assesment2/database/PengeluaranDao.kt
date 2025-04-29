@@ -21,4 +21,7 @@ interface PengeluaranDao {
 
     @Query("SELECT * FROM pengeluaran WHERE id = :id")
     suspend fun getPengeluaranById(id: Long): Pengeluaran?
+
+    @Query("DELETE FROM pengeluaran WHERE id = :id")
+    suspend fun deleteById(id: Long)
 }
