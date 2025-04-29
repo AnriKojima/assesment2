@@ -35,9 +35,11 @@ import androidx.navigation.compose.rememberNavController
 import com.anri0145.assesment2.R
 import com.anri0145.assesment2.ui.theme.Assesment2Theme
 
+const val KEY_ID_PENGELUARAN = "idPengeluaran"
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(navController: NavHostController) {
+fun DetailScreen(navController: NavHostController, id: Long? = null) {
     var judul by remember { mutableStateOf("") }
     var pengeluaran by remember { mutableStateOf("") }
 
@@ -54,7 +56,10 @@ fun DetailScreen(navController: NavHostController) {
                     }
                 },
                 title = {
+                    if (id == null)
                     Text(text = stringResource(id = R.string.tambah_pengeluaran))
+                    else
+                        Text(text = stringResource(id = R.string.edit_pengeluaran))
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
