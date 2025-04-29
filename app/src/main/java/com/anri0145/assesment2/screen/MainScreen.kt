@@ -44,6 +44,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.datastore.dataStore
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -51,13 +52,18 @@ import com.anri0145.assesment2.R
 import com.anri0145.assesment2.model.Pengeluaran
 import com.anri0145.assesment2.navigation.Screen
 import com.anri0145.assesment2.ui.theme.Assesment2Theme
+import com.anri0145.assesment2.util.SettingDataStore
 import com.anri0145.assesment2.util.ViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
-    var showList by remember { mutableStateOf(true) }
-    val context = LocalContext.current
+    val dataStore = SettingDataStore(LocalContext.current)
+    val showList by dataStore.layoutFlow.collectAsState(true)
+
 
     Scaffold(
         topBar = {
@@ -71,7 +77,11 @@ fun MainScreen(navController: NavHostController) {
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
                     ),
                 actions = {
-                    IconButton(onClick = {showList = !showList}) {
+                    IconButton(onClick = {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            dataStore.saveLayout(!showList)
+                        }
+                    }) {
                         Icon(
                             painter = painterResource(
                                 if (showList) R.drawable.baseline_grid_view_24
