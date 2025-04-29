@@ -11,4 +11,7 @@
     <string name="invalid">Judul dan Isi catatan pengeluaran tidak boleh kosong</string>
     <string name="lainnya">Opsi lainnya</string>
     <string name="hapus">Hapus catatan?</string>
+    <string name="pesan_hapus">Hapus Catatan Pengeluaran ini?</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
 </resources>
