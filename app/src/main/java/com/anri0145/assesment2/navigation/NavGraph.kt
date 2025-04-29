@@ -8,12 +8,12 @@ import com.anri0145.assesment2.screen.MainScreen
 
 @Composable
 fun SetupNavGraph(navController: NavController = rememberNavController()) {
-   NavHost(
-       navController = navController,
-       startDestination = Screen.Home.route
-   ){
-       composeable(route = Screen.Home.route){
-           MainScreen()
-       }
-   }
+//   NavHost(
+//       navController = navController,
+//       startDestination = Screen.Home.route
+//   ){
+//       composeable(route = Screen.Home.route){
+//           MainScreen()
+//       }
+//   }
 }

@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.anri0145.assesment2"
-        minSdk = 23
+        minSdk = 25
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
