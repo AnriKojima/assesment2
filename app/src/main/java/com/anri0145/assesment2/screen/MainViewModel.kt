@@ -13,4 +13,7 @@ class MainViewModel : ViewModel() {
             "dfghjkl"
         )
     )
+    fun getPengeluaran(id: Long) : Pengeluaran?{
+        return data.find { it.id == id }
+    }
 }
