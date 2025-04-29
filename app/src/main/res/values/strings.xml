@@ -2,6 +2,8 @@
     <string name="app_name">Pengeluaran Hari ini</string>
     <string name="list_kosong">Belum ada data</string>
     <string name="x_diklik">%1$s diklik!</string>
-    <string name="tsmbah_pengeluaran">Tambah catatan</string>
+    <string name="tambah_pengeluaran">Tambah catatan</string>
     <string name="belum_bisa">Belum bisa tambah pengeluaran</string>
+    <string name="judul">Nama Tempat</string>
+    <string name="isi_pengeluaran">Isi Pengeluaran hari ini</string>
 </resources>

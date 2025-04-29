@@ -62,7 +62,7 @@ fun MainScreen() {
             ) {
                 Icon(
                     imageVector = Icons.Filled.Add,
-                    contentDescription = stringResource(R.string.tsmbah_pengeluaran),
+                    contentDescription = stringResource(R.string.tambah_pengeluaran),
                     tint = MaterialTheme.colorScheme.primary
                 )
             }
