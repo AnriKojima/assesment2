@@ -14,11 +14,12 @@ class DetailViewModel(private val dao: PengeluaranDao) : ViewModel() {
 
     private val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
 
-    fun insert(judul: String, isi: String, hari: String){
+    fun insert(judul: String, isi: String, jumlah: String,hari: String){
         val pengeluaran = Pengeluaran(
             tanggal = formatter.format(Date()),
             judul = judul,
             belanja = isi,
+            jumlah = jumlah,
             hari = hari
         )
         viewModelScope.launch (Dispatchers.IO){
@@ -28,21 +29,22 @@ class DetailViewModel(private val dao: PengeluaranDao) : ViewModel() {
     suspend fun getPengeluaran(id: Long) : Pengeluaran?{
         return dao.getPengeluaranById(id)
     }
-    fun update(id: Long, judul: String, isi: String, hari: String){
+    fun update(id: Long, judul: String, isi: String, jumlah: String, hari: String){
         val pengeluaran = Pengeluaran(
             id = id,
             tanggal = formatter.format(Date()),
             judul = judul,
             belanja = isi,
+            jumlah = jumlah,
             hari = hari
         )
         viewModelScope.launch (Dispatchers.IO){
             dao.update(pengeluaran)
         }
     }
-    fun delete(id: Long){
+    fun cycleDelete(id: Long){
         viewModelScope.launch (Dispatchers.IO){
-            dao.deleteById(id)
+            dao.cycleDeleteById(id)
         }
     }
 }

@@ -9,6 +9,8 @@ data class Pengeluaran(
     val id: Long = 0L,
     val judul: String,
     val belanja: String,
+    val jumlah: String,
     val tanggal: String,
-    val hari: String
+    val hari: String,
+    val isDeleted: Boolean = false
 )

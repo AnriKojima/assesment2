@@ -11,17 +11,23 @@ import kotlinx.coroutines.flow.Flow
 interface PengeluaranDao {
 
     @Insert
-    suspend fun insert(pengeluaran: Pengeluaran)
+    suspend fun insert(belanja: Pengeluaran)
 
     @Update
-    suspend fun update(pengeluaran: Pengeluaran)
+    suspend fun update(belanja: Pengeluaran)
 
     @Query("SELECT * FROM pengeluaran ORDER BY tanggal DESC")
-    fun getPengeluara(): Flow<List<Pengeluaran>>
+    fun getPengeluaran(): Flow<List<Pengeluaran>>
 
-    @Query("SELECT * FROM pengeluaran WHERE id = :id")
+    @Query ("SELECT * FROM pengeluaran WHERE id = :id")
     suspend fun getPengeluaranById(id: Long): Pengeluaran?
 
     @Query("DELETE FROM pengeluaran WHERE id = :id")
     suspend fun deleteById(id: Long)
+
+    @Query("UPDATE pengeluaran SET isDeleted = 1 WHERE id = :id")
+    suspend fun cycleDeleteById(id: Long)
+
+    @Query("UPDATE pengeluaran SET isDeleted = 0 WHERE id = :id")
+    suspend fun undoDeleteById(id: Long)
 }

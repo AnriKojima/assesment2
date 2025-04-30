@@ -7,7 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.anri0145.assesment2.model.Pengeluaran
 
-@Database(entities = [Pengeluaran::class], version = 1, exportSchema = false)
+@Database(entities = [Pengeluaran::class], version = 4, exportSchema = false)
 abstract class PengeluaranDb : RoomDatabase(){
 
     abstract val dao: PengeluaranDao
@@ -26,7 +26,8 @@ abstract class PengeluaranDb : RoomDatabase(){
                         context.applicationContext,
                         PengeluaranDb::class.java,
                         "pengeluaran.db"
-                    ).build()
+                    ).fallbackToDestructiveMigration()
+                        .build()
                     INSTANCE = instance
                 }
                 return instance

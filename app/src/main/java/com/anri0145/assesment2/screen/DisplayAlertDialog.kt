@@ -13,9 +13,12 @@ import com.anri0145.assesment2.ui.theme.Assesment2Theme
 
 @Composable
 fun DisplayAlertDialog(
+    openDialog: Boolean,
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit
 ){
+    if (openDialog){
+
         AlertDialog(
             text = { Text(text = stringResource(R.string.pesan_hapus)) },
             confirmButton = {
@@ -31,6 +34,7 @@ fun DisplayAlertDialog(
             onDismissRequest = { onDismissRequest()}
         )
     }
+}
 
 
 
@@ -40,6 +44,7 @@ fun DisplayAlertDialog(
 fun DialogPreview(){
     Assesment2Theme {
         DisplayAlertDialog(
+            openDialog = true,
             onDismissRequest = {},
             onConfirmation = {}
         )
