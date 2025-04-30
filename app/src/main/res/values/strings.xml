@@ -5,7 +5,7 @@
     <string name="tambah_pengeluaran">Tambah catatan</string>
     <string name="judul">Nama Tempat</string>
     <string name="isi_pengeluaran">Isi Pengeluaran hari ini</string>
-    <string name="isi_jumlah">Jumlah yang Keluar</string>
+    <string name="isi_jumlah">Total pengeluaran</string>
     <string name="kembali">Kembali</string>
     <string name="simpan">Simpan</string>
     <string name="edit_pengeluaran">Ubah Pengeluaran</string>
