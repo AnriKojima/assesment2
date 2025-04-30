@@ -96,7 +96,7 @@ fun MainScreen(navController: NavHostController) {
                                 if (showList) R.string.grid
                                 else R.string.list
                             ),
-                            tint = MaterialTheme.colorScheme.primary
+                            tint = MaterialTheme.colorScheme.surfaceBright
                         )
                     }
                     IconButton(onClick = {
@@ -201,6 +201,7 @@ fun ListItem(pengeluaran: Pengeluaran, onClick: () -> Unit){
             maxLines = 2,
             overflow = TextOverflow.Ellipsis
         )
+        Text(text = pengeluaran.jumlah)
         Text(text = pengeluaran.hari)
         Text(text = pengeluaran.tanggal)
     }
@@ -213,7 +214,7 @@ fun GridItem(pengeluaran: Pengeluaran, onClick: () -> Unit){
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface,
         ),
-        border = BorderStroke(1.dp, Color.Gray)
+        border = BorderStroke(3.dp, Color.Gray)
     ) {
         Column (
             modifier = Modifier.padding(8.dp),
@@ -231,9 +232,7 @@ fun GridItem(pengeluaran: Pengeluaran, onClick: () -> Unit){
                 overflow = TextOverflow.Ellipsis
             )
             Text(
-                text = pengeluaran.jumlah,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                text = pengeluaran.jumlah
             )
             Text(
                 text = pengeluaran.hari

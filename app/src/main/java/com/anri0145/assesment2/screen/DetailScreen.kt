@@ -87,6 +87,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
         val data = viewModel.getPengeluaran(id) ?: return@LaunchedEffect
         judul = data.judul
         pengeluaran = data.belanja
+        jumlah = data.jumlah
         dayOption = data.hari
     }
 
@@ -114,7 +115,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                 ),
                 actions = {
                     IconButton(onClick = {
-                        if (judul == "" || pengeluaran == "") {
+                        if (judul == "" || pengeluaran == "" || jumlah == "") {
                             Toast.makeText(context, R.string.invalid, Toast.LENGTH_SHORT).show()
                             return@IconButton
                         }
@@ -229,7 +230,6 @@ fun FormCatatan(
             onValueChange = { onjumlahChange(it) },
             label = { Text(text = stringResource(R.string.isi_jumlah)) },
             trailingIcon = { Text(text = "Rp") },
-            singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
                 imeAction = ImeAction.Next
