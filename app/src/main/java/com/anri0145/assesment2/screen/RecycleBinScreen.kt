@@ -57,7 +57,7 @@ fun RecycleBinScreen(navController: NavHostController) {
                     Text(text = stringResource(R.string.recycle_judul))
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
                 ),
             )

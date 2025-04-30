@@ -109,7 +109,7 @@ fun DetailScreen(navController: NavHostController, id: Long? = null) {
                         Text(text = stringResource(id = R.string.edit_pengeluaran))
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = MaterialTheme.colorScheme.surfaceBright
                 ),
                 actions = {
